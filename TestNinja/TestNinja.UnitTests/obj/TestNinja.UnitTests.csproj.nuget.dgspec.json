@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\unittest\\source-code-starter\\TestNinja\\TestNinja.UnitTests\\TestNinja.UnitTests.csproj": {}
+    "F:\\unittest.net\\TestNinja\\TestNinja.UnitTests\\TestNinja.UnitTests.csproj": {}
   },
   "projects": {
-    "F:\\unittest\\source-code-starter\\TestNinja\\TestNinja.UnitTests\\TestNinja.UnitTests.csproj": {
+    "F:\\unittest.net\\TestNinja\\TestNinja.UnitTests\\TestNinja.UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\unittest\\source-code-starter\\TestNinja\\TestNinja.UnitTests\\TestNinja.UnitTests.csproj",
+        "projectUniqueName": "F:\\unittest.net\\TestNinja\\TestNinja.UnitTests\\TestNinja.UnitTests.csproj",
         "projectName": "TestNinja.UnitTests",
-        "projectPath": "F:\\unittest\\source-code-starter\\TestNinja\\TestNinja.UnitTests\\TestNinja.UnitTests.csproj",
+        "projectPath": "F:\\unittest.net\\TestNinja\\TestNinja.UnitTests\\TestNinja.UnitTests.csproj",
         "packagesPath": "C:\\Users\\serka\\.nuget\\packages\\",
-        "outputPath": "F:\\unittest\\source-code-starter\\TestNinja\\TestNinja.UnitTests\\obj\\",
+        "outputPath": "F:\\unittest.net\\TestNinja\\TestNinja.UnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\serka\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "F:\\unittest\\source-code-starter\\TestNinja\\TestNinja\\TestNinja.csproj": {
-                "projectPath": "F:\\unittest\\source-code-starter\\TestNinja\\TestNinja\\TestNinja.csproj"
+              "F:\\unittest.net\\TestNinja\\TestNinja\\TestNinja.csproj": {
+                "projectPath": "F:\\unittest.net\\TestNinja\\TestNinja\\TestNinja.csproj"
               }
             }
           }
@@ -81,11 +81,11 @@
         }
       }
     },
-    "F:\\unittest\\source-code-starter\\TestNinja\\TestNinja\\TestNinja.csproj": {
+    "F:\\unittest.net\\TestNinja\\TestNinja\\TestNinja.csproj": {
       "restore": {
-        "projectUniqueName": "F:\\unittest\\source-code-starter\\TestNinja\\TestNinja\\TestNinja.csproj",
+        "projectUniqueName": "F:\\unittest.net\\TestNinja\\TestNinja\\TestNinja.csproj",
         "projectName": "TestNinja",
-        "projectPath": "F:\\unittest\\source-code-starter\\TestNinja\\TestNinja\\TestNinja.csproj",
+        "projectPath": "F:\\unittest.net\\TestNinja\\TestNinja\\TestNinja.csproj",
         "frameworks": {
           "net48": {
             "projectReferences": {}
