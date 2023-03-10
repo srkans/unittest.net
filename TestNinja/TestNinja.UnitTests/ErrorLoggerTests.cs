@@ -40,5 +40,7 @@ namespace TestNinja.UnitTests
 
             Assert.That(id, Is.Not.EqualTo(Guid.Empty));
         }
+
+   
     }
 }
