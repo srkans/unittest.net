@@ -10,11 +10,13 @@ namespace TestNinja.UnitTests
     
 
         [Test]
-        public void CalculateDemeritPoints_SpeedSmallerThanZero_ThrowException() 
+        [TestCase(-1)]
+        [TestCase(301)]
+        public void CalculateDemeritPoints_OutOfRange_ThrowException(int speed) 
         {
           var calculator = new DemeritPointsCalculator();
 
-          Assert.That(() => calculator.CalculateDemeritPoints(-1),Throws.Exception.TypeOf<ArgumentOutOfRangeException>());
+          Assert.That(() => calculator.CalculateDemeritPoints(speed),Throws.Exception.TypeOf<ArgumentOutOfRangeException>());
         }
 
         [Test]
@@ -33,13 +35,5 @@ namespace TestNinja.UnitTests
             Assert.That(result, Is.EqualTo(expectedResult));
         }
 
-             
-        [Test]
-        public void CalculateDemeritPoints_SpeedGreaterThan300_ThrowException() 
-        {
-            var calculator = new DemeritPointsCalculator();
-
-            Assert.That(() => calculator.CalculateDemeritPoints(301), Throws.Exception.TypeOf<ArgumentOutOfRangeException>());
-        }
     }
 }
