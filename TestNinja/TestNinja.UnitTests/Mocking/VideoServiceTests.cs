@@ -10,9 +10,7 @@ namespace TestNinja.UnitTests.Mocking
         [Test]
         public void ReadVideoTitle_EmptyFile_ReturnErrorMessage()
         {
-            var service = new VideoService();
-
-            service.FileReader = new FakeFileReader(); //constructor'da FileReader sınıfını atamıştım null kalmasın diye.
+            var service = new VideoService(new FakeFileReader());
 
             var result = service.ReadVideoTitle();
 
