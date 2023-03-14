@@ -4,22 +4,33 @@ using TestNinja.Mocking;
 
 namespace TestNinja.UnitTests.Mocking
 {
+   
 
     [TestFixture]
     public class VideoServiceTests
     {
+        private Mock<IFileReader> _fileReader;
+        private VideoService _videoService;
+
+        [SetUp]
+        public void SetUp() 
+        {
+            _fileReader= new Mock<IFileReader>();
+            _videoService= new VideoService(_fileReader.Object);
+        }
+
+
         [Test]
         public void ReadVideoTitle_EmptyFile_ReturnErrorMessage()
-        {
-            var fileReader = new Mock<IFileReader>();
+        {        
 
-            fileReader.Setup(fr => fr.Read("video.txt")).Returns("");
+            _fileReader.Setup(fr => fr.Read("video.txt")).Returns("");
             //filereader read methodunu ilgili argument ile çağırdığımda boş bir string döndürecek bir mock set ettik.
             //moq documentetion araştır.
             //use moq for only external dependencies
-            var service = new VideoService(fileReader.Object);
+       
 
-            var result = service.ReadVideoTitle();
+            var result = _videoService.ReadVideoTitle();
 
             Assert.That(result, Does.Contain("error").IgnoreCase);
 
