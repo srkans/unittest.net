@@ -10,10 +10,13 @@ namespace TestNinja.Mocking
     public class VideoService
     {
         private IFileReader _fileReader;
+        private IVideoRepository _videoRepository;
+       
 
-        public VideoService(IFileReader fileReader = null) // = null ifadesi ile constructor'a argument geçmeyi zorunlu olmaktan çıkardım.
+        public VideoService(IFileReader fileReader = null, IVideoRepository videoRepository = null) // = null ifadesi ile constructor'a argument geçmeyi zorunlu olmaktan çıkardım.
         {
             _fileReader = fileReader ?? new FileReader(); // filereader null ise yeni bir FileReader objesi oluştur ve ata
+            _videoRepository = videoRepository ?? new VideoRepository();
         }
         public string ReadVideoTitle()
         {
@@ -27,19 +30,12 @@ namespace TestNinja.Mocking
         public string GetUnprocessedVideosAsCsv()
         {
             var videoIds = new List<int>();
-            
-            using (var context = new VideoContext())
-            {
-                var videos = 
-                    (from video in context.Videos
-                    where !video.IsProcessed
-                    select video).ToList();
-                
-                foreach (var v in videos)
-                    videoIds.Add(v.Id);
 
-                return String.Join(",", videoIds);
-            }
+            var videos = _videoRepository.GetUnproccessedVideos();  
+            foreach (var v in videos)
+              videoIds.Add(v.Id);
+
+            return String.Join(",", videoIds);
         }
     }
 
