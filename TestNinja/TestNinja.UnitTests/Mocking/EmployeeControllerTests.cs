@@ -17,5 +17,16 @@ namespace TestNinja.UnitTests.Mocking
 
             storage.Verify(s=> s.DeleteEmployee(1));
         }
+
+        [Test]
+        public void DeleteEmployee_WhenCalled_RedirectResult()
+        {
+            var storage = new Mock<IEmployeeStorage>();
+            var controller = new EmployeeController(storage.Object);
+
+            var result = controller.DeleteEmployee(1);
+
+           Assert.That(result,Is.TypeOf<RedirectResult>());
+        }
     }
 }
