@@ -51,9 +51,12 @@ namespace TestNinja.UnitTests.Mocking
         }
 
         [Test]
-        public void SendStatementEmails_HouseKeepersEmailIsNull_ShouldNotGenerateStatement()
+        [TestCase(null)]
+        [TestCase(" ")]
+        [TestCase("")]
+        public void SendStatementEmails_HouseKeepersEmailIsNull_ShouldNotGenerateStatement(string mail)
         {
-            _houseKeeper.Email = null;
+            _houseKeeper.Email = mail;
 
             _service.SendStatementEmails(_statementDate);
 
@@ -61,15 +64,5 @@ namespace TestNinja.UnitTests.Mocking
             //Times ifadesi SaveStatement methodunun kaç kez çağırıldığını gösteriyor. Never diyerek mail null ise methodun çağrılmadığını test etmiş olduk.
         }
 
-        [Test]
-        public void SendStatementEmails_HouseKeepersEmailIsWhiteSpace_ShouldNotGenerateStatement()
-        {
-            _houseKeeper.Email = " ";
-
-            _service.SendStatementEmails(_statementDate);
-
-            _statementGenerator.Verify(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate), Times.Never);
-            //Times ifadesi SaveStatement methodunun kaç kez çağırıldığını gösteriyor. Never diyerek mail null ise methodun çağrılmadığını test etmiş olduk.
-        }
     }
 }
