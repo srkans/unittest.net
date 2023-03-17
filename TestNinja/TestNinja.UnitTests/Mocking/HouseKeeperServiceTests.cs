@@ -12,7 +12,7 @@ namespace TestNinja.UnitTests.Mocking
     [TestFixture]
     public class HouseKeeperServiceTests
     {
-
+        private readonly string _statementFileName = "filename";
         private HousekeeperService _service;
         private Mock<IStatementGenerator> _statementGenerator;
         private Mock<IEmailSender> _emailSender;
@@ -62,6 +62,44 @@ namespace TestNinja.UnitTests.Mocking
 
             _statementGenerator.Verify(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate), Times.Never);
             //Times ifadesi SaveStatement methodunun kaç kez çağırıldığını gösteriyor. Never diyerek mail null ise methodun çağrılmadığını test etmiş olduk.
+        }
+
+        [Test]
+        public void SendStatementEmails_WhenCalled_EmailTheStatement()
+        {
+            _statementGenerator
+                .Setup(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate))
+                .Returns(_statementFileName);
+
+            _service.SendStatementEmails(_statementDate);
+
+            _emailSender.Verify(es => es.EmailFile(
+                _houseKeeper.Email,
+                _houseKeeper.StatementEmailBody,
+                _statementFileName,
+                It.IsAny<string>()));
+         
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase(" ")]
+        [TestCase("")]
+        public void SendStatementEmails_StatementFileNameIsNull_ShouldNotEmailTheStatement(string statement)
+        {
+            _statementGenerator
+                .Setup(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate))
+                .Returns(() => statement); //string ya da fonksiyondan hangisi oldugunu func lambda expression ile gosterdik
+
+            _service.SendStatementEmails(_statementDate);
+
+            _emailSender.Verify(es => es.EmailFile(
+                _houseKeeper.Email,
+                _houseKeeper.StatementEmailBody,
+                _statementFileName,
+                It.IsAny<string>()), 
+                Times.Never);
+
         }
 
     }
