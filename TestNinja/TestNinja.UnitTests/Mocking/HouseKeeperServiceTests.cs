@@ -60,5 +60,16 @@ namespace TestNinja.UnitTests.Mocking
             _statementGenerator.Verify(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate), Times.Never);
             //Times ifadesi SaveStatement methodunun kaç kez çağırıldığını gösteriyor. Never diyerek mail null ise methodun çağrılmadığını test etmiş olduk.
         }
+
+        [Test]
+        public void SendStatementEmails_HouseKeepersEmailIsWhiteSpace_ShouldNotGenerateStatement()
+        {
+            _houseKeeper.Email = " ";
+
+            _service.SendStatementEmails(_statementDate);
+
+            _statementGenerator.Verify(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, _statementDate), Times.Never);
+            //Times ifadesi SaveStatement methodunun kaç kez çağırıldığını gösteriyor. Never diyerek mail null ise methodun çağrılmadığını test etmiş olduk.
+        }
     }
 }
